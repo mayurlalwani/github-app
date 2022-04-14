@@ -1,7 +1,6 @@
 import { Box, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useContext, useState } from "react";
-import AlertContext from "../../context/alert/alertContext";
 import GithubContext from "../../context/github/githubContext";
 
 const initialState = {
@@ -28,7 +27,6 @@ const exampleReducer = (state, action) => {
 
 const SearchUsers = () => {
   const githubContext = useContext(GithubContext);
-  const alertContext = useContext(AlertContext);
 
   const [text, setText] = useState();
 
@@ -42,7 +40,7 @@ const SearchUsers = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (text === "") {
-      alertContext.setAlert("Please enter something", "light");
+      console.log("no text entered");
     } else {
       githubContext.searchUsers(text);
       setText("");

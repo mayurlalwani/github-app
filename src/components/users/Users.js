@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { PulseLoader } from "react-spinners";
 import GithubContext from "../../context/github/githubContext";
 import UserItem from "./UserItem";
 
@@ -13,7 +14,11 @@ const Users = () => {
 
   const { loading, users } = githubContext;
   if (loading) {
-    return "Loading...";
+    return (
+      <div className={!loading ? "hide-loader" : "show-loader"}>
+        <PulseLoader />
+      </div>
+    );
   } else {
     return (
       <div style={userStyle}>

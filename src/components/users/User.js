@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import GithubContext from "../../context/github/githubContext";
 import BarChart from "./chart/BarChart";
 import "./user.css";
+import { PulseLoader } from "react-spinners";
 
 const User = () => {
   const githubContext = useContext(GithubContext);
@@ -33,7 +34,11 @@ const User = () => {
   } = user;
 
   if (loading) {
-    return "Loading...";
+    return (
+      <div className={!loading ? "hide-loader" : "show-loader"}>
+        <PulseLoader />
+      </div>
+    );
   }
   return (
     <>
