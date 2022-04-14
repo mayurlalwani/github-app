@@ -1,9 +1,5 @@
-import React from "react";
-import { axisLeft } from "d3-axis";
 import { select } from "d3-selection";
-
-const gridlines = ({ yScale, width, ticks }) =>
-  axisLeft(yScale).ticks(ticks).tickSize(-width).tickFormat("");
+import React from "react";
 
 class Grid extends React.Component {
   constructor() {
@@ -21,7 +17,6 @@ class Grid extends React.Component {
     select(node);
   }
   updateAxis() {
-    const node = this.ref.current;
     const { t } = this.props;
     select(".grid-group").transition(t);
   }

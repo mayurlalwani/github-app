@@ -1,6 +1,5 @@
+import { select } from "d3-selection";
 import React from "react";
-import { select, event } from "d3-selection";
-import { transition } from "d3-transition";
 
 class Bar extends React.Component {
   constructor() {
@@ -25,7 +24,7 @@ class Bar extends React.Component {
       .attr("height", (d) => height - yScale(d.value));
   }
   init() {
-    const { xScale, yScale, data, height } = this.props;
+    const { xScale, data, height } = this.props;
     const node = this.ref.current;
 
     // prepare initial data from where transition starts.

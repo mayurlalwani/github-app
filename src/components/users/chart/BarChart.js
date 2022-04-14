@@ -3,7 +3,6 @@ import { transition } from "d3-transition";
 import React from "react";
 import XYAxis from "./axis/xy-axis.js";
 import Bar from "./bar/bar.js";
-import Grid from "./grid/grid.js";
 
 const BarChart = ({ followers, following, publicRepos, publicGists }) => {
   const data = [
@@ -44,7 +43,6 @@ const BarChart = ({ followers, following, publicRepos, publicGists }) => {
       >
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <XYAxis {...{ xScale, yScale, height, ticks, t }} />
-          // <Grid {...{ xScale, yScale, width, ticks, t }} />
           <Bar
             {...{
               xScale,
