@@ -5,7 +5,14 @@ import { Button, Card } from "@mui/material";
 const UserItem = (props) => {
   const { avatar_url, login } = props.user;
   return (
-    <Card sx={{ minWidth: 300 }}>
+    <Card
+      sx={{
+        minWidth: 300,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <img
         src={avatar_url}
         className="round-img"
