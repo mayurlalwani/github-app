@@ -2,21 +2,25 @@ import { Box, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useContext, useState } from "react";
 import GithubContext from "../../context/github/githubContext";
+import Alert from "@mui/material/Alert";
 
 const SearchUsers = () => {
   const githubContext = useContext(GithubContext);
 
   const [text, setText] = useState();
+  const [alert, setAlert] = useState(false);
 
   const handleChange = (e) => {
     setText(e.target.value);
+    setAlert(false);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (text === "") {
-      console.log("no text entered");
+      setAlert(true);
     } else {
+      setAlert(false);
       githubContext.searchUsers(text);
       setText("");
     }
@@ -46,21 +50,28 @@ const SearchUsers = () => {
           display: "flex",
           justifyContent: "space-between",
           marginBottom: 5,
-          width: 200,
         }}
       >
-        <Button variant="contained" onClick={onSubmit}>
+        <Button
+          variant="contained"
+          onClick={onSubmit}
+          sx={{ fontWeight: "bolder" }}
+        >
           Search
         </Button>
-
-        {githubContext.users.length > 0 && (
+        {/* {githubContext.users.length > 0 && (
           <>
-            <Button variant="secondary" onClick={githubContext.clearUsers}>
+            <Button
+              variant="secondary"
+              // onClick={githubContext.clearUsers}
+              onClick={handleClear}
+            >
               Clear
             </Button>
           </>
-        )}
+        )} */}
       </Box>
+      {alert && <Alert severity="error">Enter text to search!!</Alert>}
     </form>
   );
 };

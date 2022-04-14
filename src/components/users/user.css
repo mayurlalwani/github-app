@@ -1,8 +1,16 @@
+.user-main-container {
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .user-card-container {
   display: flex;
   padding: 1rem;
   border: 1px dotted #ccc;
   margin: 0.7rem 0;
+  width: 100%;
 }
 
 .left-section {
@@ -29,4 +37,5 @@
 
 .repo {
   flex-direction: column;
+  width: 100%;
 }

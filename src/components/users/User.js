@@ -41,10 +41,13 @@ const User = () => {
     );
   }
   return (
-    <>
-      <Link to="/" className="btn btn-light" style={{ width: "15%" }}>
-        <Button variant="text">Back to Search</Button>
+    <div className="user-main-container">
+      <Link to="/" className="btn btn-light">
+        <Button variant="contained" sx={{ fontWeight: "bold", marginTop: 2 }}>
+          Back to Search
+        </Button>
       </Link>
+
       <div className="user-card-container">
         <div className="left-section">
           <img
@@ -96,8 +99,8 @@ const User = () => {
 
       <div className="user-card-container repo">
         <h4>Last 5 Repositories</h4>
-        {repos.map((repo) => (
-          <div className="repo-card">
+        {repos.map((repo, index) => (
+          <div className="repo-card" key={index}>
             <Card
               sx={{
                 width: "100%",
@@ -121,7 +124,7 @@ const User = () => {
         publicRepos={public_repos}
         publicGists={public_gists}
       />
-    </>
+    </div>
   );
 };
 
