@@ -1,37 +1,33 @@
-import { Button, Card } from "@mui/material";
-import React, { useEffect, useContext } from "react";
+import { Button } from "@mui/material";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
 import GithubContext from "../../context/github/githubContext";
 import BarChart from "./chart/BarChart";
 import "./user.css";
-import { PulseLoader } from "react-spinners";
 
-const User = () => {
+const Repo = () => {
   const githubContext = useContext(GithubContext);
-  const { getUser, loading, user, repos, getUserRepos } = githubContext;
+  const { loading, user, repos } = githubContext;
 
   const location = useLocation();
-  const userName = location.pathname.split("/")[2];
+  const repoId = location.pathname.split("/")[2];
 
-  useEffect(() => {
-    getUser(userName);
-    getUserRepos(userName);
-    //eslint-disable-next-line
-  }, []);
+  const repoDetails = repos.filter((repo) => repo.id === parseInt(repoId));
+
+  const { company, login } = user;
 
   const {
-    name,
-    company,
-    avatar_url,
-    bio,
-    blog,
-    login,
+    full_name,
+    owner,
+    description,
+    homepage,
     html_url,
-    followers,
-    following,
-    public_repos,
-    public_gists,
-  } = user;
+    forks,
+    open_issues,
+    watchers,
+    size,
+  } = repoDetails[0];
 
   if (loading) {
     return (
@@ -51,23 +47,31 @@ const User = () => {
       <div className="user-card-container">
         <div className="left-section">
           <img
-            src={avatar_url}
+            src={owner.avatar_url}
             className="round-img"
             style={{ width: 150, borderRadius: "50%" }}
             alt=""
           />
-          <h1>{name}</h1>
+          <h1>Created By </h1>
+          {owner && owner.login}
         </div>
 
         <div className="right-section">
-          {bio && (
+          {full_name && (
             <>
-              <h3>Bio</h3>
-              <p> {bio} </p>
+              <h3>Repository name</h3>
+              <p> {full_name} </p>
+            </>
+          )}
+
+          {description && (
+            <>
+              <h3>Description</h3>
+              <p> {description} </p>
             </>
           )}
           <a href={html_url} className="btn btn-dark my-1">
-            Visit Github Profile
+            View Code in Github
           </a>
           <ul>
             <li>
@@ -87,9 +91,9 @@ const User = () => {
             </li>
 
             <li>
-              {blog && (
+              {homepage && (
                 <>
-                  <strong>Website:</strong> {blog}
+                  <strong>Website:</strong> {homepage}
                 </>
               )}
             </li>
@@ -97,35 +101,14 @@ const User = () => {
         </div>
       </div>
 
-      <div className="user-card-container repo">
-        <h4>Last 5 Repositories</h4>
-        {repos.map((repo, index) => (
-          <div className="repo-card" key={index}>
-            <Card
-              sx={{
-                width: "100%",
-                margin: 1,
-                height: 50,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <h3>
-                <a href={repo.html_url}> {repo.name} </a>
-              </h3>
-            </Card>
-          </div>
-        ))}
-      </div>
       <BarChart
-        followers={followers}
-        following={following}
-        publicRepos={public_repos}
-        publicGists={public_gists}
+        forks={forks}
+        openIssues={open_issues}
+        watchers={watchers}
+        size={size}
       />
     </div>
   );
 };
 
-export default User;
+export default Repo;

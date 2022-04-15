@@ -1,19 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { PulseLoader } from "react-spinners";
 import GithubContext from "../../context/github/githubContext";
-import UserItem from "./UserItem";
+import RepoItem from "./RepoItem";
 
-const Users = () => {
+const Repos = () => {
   const githubContext = useContext(GithubContext);
 
-  const { getAllUsers } = githubContext;
-
-  useEffect(() => {
-    getAllUsers();
-    //eslint-disable-next-line
-  }, []);
-
-  const { loading, users } = githubContext;
+  const { loading, repos } = githubContext;
   if (loading) {
     return (
       <div className={!loading ? "hide-loader" : "show-loader"}>
@@ -24,8 +17,8 @@ const Users = () => {
     return (
       <>
         <div className="user-cards">
-          {users.map((user) => (
-            <UserItem key={user.id} user={user} />
+          {repos.map((repo) => (
+            <RepoItem key={repo.id} repo={repo} />
           ))}
         </div>
       </>
@@ -33,4 +26,4 @@ const Users = () => {
   }
 };
 
-export default Users;
+export default Repos;

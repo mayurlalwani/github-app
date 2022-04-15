@@ -21,7 +21,7 @@ const SearchUsers = () => {
       setAlert(true);
     } else {
       setAlert(false);
-      githubContext.searchUsers(text);
+      githubContext.searchRepos(text);
       setText("");
     }
   };

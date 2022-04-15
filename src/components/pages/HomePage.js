@@ -1,12 +1,12 @@
 import React from "react";
+import Repos from "../users/Repos";
 import SearchUsers from "../users/Search";
-import Users from "../users/Users";
 
 const HomePage = () => {
   return (
     <>
       <SearchUsers />
-      <Users />
+      <Repos />
     </>
   );
 };

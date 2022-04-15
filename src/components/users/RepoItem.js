@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "@mui/material";
 
-const UserItem = (props) => {
-  const { avatar_url, login } = props.user;
+const RepoItem = ({ key, repo }) => {
   return (
     <Card
       sx={{
@@ -14,14 +13,14 @@ const UserItem = (props) => {
       }}
     >
       <img
-        src={avatar_url}
+        src={repo.owner.avatar_url}
         className="round-img"
         alt="avatar"
         style={{ width: "60px" }}
       />
-      <h3>{login}</h3>
+      <h3>{repo.full_name}</h3>
       <div>
-        <Link to={`/user/${login}`}>
+        <Link to={`/repo/${repo.id}`}>
           <Button variant="text">View More</Button>
         </Link>
       </div>
@@ -29,4 +28,4 @@ const UserItem = (props) => {
   );
 };
 
-export default UserItem;
+export default RepoItem;

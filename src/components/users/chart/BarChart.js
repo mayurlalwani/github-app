@@ -4,12 +4,12 @@ import React from "react";
 import XYAxis from "./axis/xy-axis.js";
 import Bar from "./bar/bar.js";
 
-const BarChart = ({ followers, following, publicRepos, publicGists }) => {
+const BarChart = ({ forks, openIssues, watchers, size }) => {
   const data = [
-    { name: "Followers", value: followers },
-    { name: "Following", value: following },
-    { name: "Public Gists", value: publicGists },
-    { name: "Public Repos", value: publicRepos },
+    { name: "Forks", value: forks },
+    { name: "Open Issues", value: openIssues },
+    { name: "Watchers", value: watchers },
+    { name: "Size", value: size },
   ];
 
   const parentWidth = 500;

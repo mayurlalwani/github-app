@@ -9,6 +9,7 @@ import {
   GET_USER,
   GET_REPOS,
   GET_ALL_USERS,
+  SEARCH_REPOS,
 } from "../types";
 
 let githubClientId;
@@ -40,6 +41,18 @@ const GithubState = (props) => {
     );
     dispatch({
       type: SEARCH_USERS,
+      payload: res.data.items,
+    });
+  };
+
+  //Search Repos
+  const searchRepos = async (text) => {
+    setLoading();
+    const res = await axios.get(
+      `https://api.github.com/search/repositories?q=${text}&client_id=${githubClientId}&client_secret=${githubClientSecret}`
+    );
+    dispatch({
+      type: SEARCH_REPOS,
       payload: res.data.items,
     });
   };
@@ -89,6 +102,7 @@ const GithubState = (props) => {
         getUser,
         getUserRepos,
         getAllUsers,
+        searchRepos,
       }}
     >
       {props.children}

@@ -1,5 +1,6 @@
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const SEARCH_USERS = "SEARCH_USERS";
+export const SEARCH_REPOS = "SEARCH_REPOS";
 export const GET_USER = "GET_USER";
 export const CLEAR_USERS = "CLEAR_USERS";
 export const GET_REPOS = "GET_REPOS";

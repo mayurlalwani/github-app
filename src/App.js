@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/layouts/Navbar";
 import HomePage from "./components/pages/HomePage";
-import User from "./components/users/User";
+import Repo from "./components/users/Repo";
 import GithubState from "./context/github/githubState";
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route exact path="/" element={<HomePage />} />
-              <Route exact path="/user/:login" element={<User />} />
+              <Route exact path="/repo/:id" element={<Repo />} />
             </Routes>
           </div>
         </div>
