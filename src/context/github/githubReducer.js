@@ -38,7 +38,7 @@ const GithubReducer = (state, action) => {
     case CLEAR_USERS:
       return {
         ...state,
-        users: [],
+        repos: [],
         loading: false,
       };
     case GET_USER:

@@ -38,11 +38,11 @@ const SearchUsers = () => {
     >
       <TextField
         id="outlined-basic"
-        label="Search Users..."
+        label="Search Repositories..."
         variant="outlined"
         value={text}
         onChange={handleChange}
-        style={{ margin: 10 }}
+        style={{ margin: 10, width: "50%" }}
       />
 
       <Box
@@ -59,17 +59,17 @@ const SearchUsers = () => {
         >
           Search
         </Button>
-        {/* {githubContext.users.length > 0 && (
+        {githubContext.repos.length > 0 && (
           <>
             <Button
               variant="secondary"
-              // onClick={githubContext.clearUsers}
-              onClick={handleClear}
+              onClick={githubContext.clearRepos}
+              // onClick={handleClear}
             >
               Clear
             </Button>
           </>
-        )} */}
+        )}
       </Box>
       {alert && <Alert severity="error">Enter text to search!!</Alert>}
     </form>
